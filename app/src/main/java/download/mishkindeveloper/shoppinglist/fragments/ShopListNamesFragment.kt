@@ -41,7 +41,7 @@ private lateinit var adapter: ShopListNameAdapter
 mainViewModel.insertShopListName(shoppingListName)
         }
 
-    } )
+    } ,"")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -97,7 +97,13 @@ DeleteDialog.showDialog(context as AppCompatActivity,object :DeleteDialog.Listen
     }
 
     override fun editItem(shoppingListName: ShoppingListName) {
-        TODO("Not yet implemented")
+        shoppingListName.name?.let {
+            NewListDialog.showDialog(activity as AppCompatActivity,object: NewListDialog.Listener{
+                override fun onClick(name: String) {
+                    mainViewModel.updateListName(shoppingListName.copy(name = name))
+                }
+            }, it)
+        }
     }
 
 //    override fun editItem(shoppingListName: ShoppingListName) {
