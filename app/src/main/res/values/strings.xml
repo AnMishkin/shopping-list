@@ -22,5 +22,11 @@
     <string name="new_list_name_enter">Enter the name of the new shopping list</string>
     <string name="create_button_new_shopping_list">Create list</string>
 
+    <string name="delete_item">Do you really want to delete the list?</string>
+    <string name="delete_alert">Delete</string>
+    <string name="button_delete">Delete</string>
+    <string name="button_cancel">Cancel</string>
+
+
 
 </resources>

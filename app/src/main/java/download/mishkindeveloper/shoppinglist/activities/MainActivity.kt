@@ -6,13 +6,14 @@ import android.widget.Toast
 import download.mishkindeveloper.shoppinglist.R
 import download.mishkindeveloper.shoppinglist.databinding.ActivityMainBinding
 import download.mishkindeveloper.shoppinglist.databinding.FragmentNoteBinding
+import download.mishkindeveloper.shoppinglist.dialog.NewListDialog
 import download.mishkindeveloper.shoppinglist.fragments.FragmentManager
 import download.mishkindeveloper.shoppinglist.fragments.NoteFragment
 import download.mishkindeveloper.shoppinglist.fragments.ShopListNamesFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),NewListDialog.Listener {
     lateinit var binding : ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +32,7 @@ class MainActivity : AppCompatActivity() {
 private fun initClickBar(){
 
     bNav.background = null
+
     new_item.setOnClickListener {
     FragmentManager.currentFrag?.onClickNew()
     }
@@ -51,6 +53,10 @@ private fun initClickBar(){
         true
     }
 }
+
+    override fun onClick(name: String) {
+
+    }
 }
 
 
