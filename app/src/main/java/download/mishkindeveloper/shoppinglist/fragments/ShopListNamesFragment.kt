@@ -64,12 +64,12 @@ mainViewModel.insertShopListName(shoppingListName)
 
     private fun initRcView() = with(binding){
 rcView.layoutManager = LinearLayoutManager(activity)
-        adapter  = ShopListNameAdapter()
+        adapter  = ShopListNameAdapter(this@ShopListNamesFragment)
         rcView.adapter = adapter
     }
 
     private fun observer(){
-        mainViewModel.alShoppingList.observe(viewLifecycleOwner,{
+        mainViewModel.allShoppingListName.observe(viewLifecycleOwner,{
 adapter.submitList(it)
         })
     }
@@ -77,21 +77,22 @@ adapter.submitList(it)
 
 
     companion object {
-
-
         @JvmStatic
         fun newInstance() = ShopListNamesFragment()
     }
 
     override fun deleteItem(id: Int) {
 DeleteDialog.showDialog(context as AppCompatActivity,object :DeleteDialog.Listener{
+
     override fun onClick() {
         mainViewModel.deleteShopListName(id)
     }
 })
     }
 
-    override fun onClickItem(shoppingList: ShoppingListName) {
+
+
+    override fun onClickItem(shoppingListName: ShoppingListName) {
         TODO("Not yet implemented")
     }
 

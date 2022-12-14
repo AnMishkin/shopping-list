@@ -10,12 +10,12 @@ import download.mishkindeveloper.shoppinglist.R
 import download.mishkindeveloper.shoppinglist.databinding.ShopListNameItemBinding
 import download.mishkindeveloper.shoppinglist.entity.ShoppingListName
 
-class ShopListNameAdapter(): ListAdapter<ShoppingListName, ShopListNameAdapter.ItemHolder>(ItemComparator()) {
+class ShopListNameAdapter(private val listener:Listener): ListAdapter<ShoppingListName, ShopListNameAdapter.ItemHolder>(ItemComparator()) {
 
     class ItemHolder(view:View) : RecyclerView.ViewHolder(view){
         private val binding = ShopListNameItemBinding.bind(view)
 
-        fun setData(shopListNameItem: ShoppingListName) = with((binding)){
+        fun setData(shopListNameItem: ShoppingListName,listener: Listener) = with((binding)){
             tvShoppingListName.text = shopListNameItem.name
             tvTimeShoppingList.text = shopListNameItem.time
 
@@ -23,7 +23,7 @@ class ShopListNameAdapter(): ListAdapter<ShoppingListName, ShopListNameAdapter.I
 
             }
             imDeleteShopping.setOnClickListener {
-
+listener.deleteItem(shopListNameItem.id!!)
             }
             imEditShoppingList.setOnClickListener {
 
@@ -54,7 +54,7 @@ class ShopListNameAdapter(): ListAdapter<ShoppingListName, ShopListNameAdapter.I
     }
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
-        holder.setData(getItem(position))
+        holder.setData(getItem(position),listener)
     }
 
     interface Listener{

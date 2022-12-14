@@ -9,7 +9,7 @@ class MainViewModel(dataBase: MainDataBase) :ViewModel() {
     val dao = dataBase.getDao()
 
     val allNotes:LiveData<List<NoteItem>> = dao.getAllNotes().asLiveData()
-    val alShoppingList:LiveData<List<ShoppingListName>> = dao.getAllShoppingListNames().asLiveData()
+    val allShoppingListName:LiveData<List<ShoppingListName>> = dao.getAllShoppingListNames().asLiveData()
 
 //для заметок
     fun insertNote(note: NoteItem) = viewModelScope.launch {
