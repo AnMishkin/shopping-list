@@ -1,6 +1,7 @@
 package download.mishkindeveloper.shoppinglist.fragments
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,12 +10,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import download.mishkindeveloper.shoppinglist.activities.MainApp
+import download.mishkindeveloper.shoppinglist.activities.ShopListActivity
 import download.mishkindeveloper.shoppinglist.databinding.FragmentShopListNamesBinding
 import download.mishkindeveloper.shoppinglist.db.MainViewModel
 import download.mishkindeveloper.shoppinglist.db.ShopListNameAdapter
 import download.mishkindeveloper.shoppinglist.dialog.DeleteDialog
 import download.mishkindeveloper.shoppinglist.dialog.NewListDialog
-import download.mishkindeveloper.shoppinglist.entity.ShoppingListName
+import download.mishkindeveloper.shoppinglist.entity.ShopListNameItem
 import download.mishkindeveloper.shoppinglist.utils.TimeManager
 
 
@@ -30,7 +32,7 @@ private lateinit var adapter: ShopListNameAdapter
     NewListDialog.showDialog(activity as AppCompatActivity,object: NewListDialog.Listener{
         override fun onClick(name: String) {
 
-            val shoppingListName = ShoppingListName(
+            val shopListNameItem = ShopListNameItem(
                 null,
                 name,
                 TimeManager.getCurrentTime(),
@@ -38,7 +40,7 @@ private lateinit var adapter: ShopListNameAdapter
                 0,
                 ""
             )
-mainViewModel.insertShopListName(shoppingListName)
+mainViewModel.insertShopListName(shopListNameItem)
         }
 
     } ,"")
@@ -69,7 +71,7 @@ rcView.layoutManager = LinearLayoutManager(activity)
     }
 
     private fun observer(){
-        mainViewModel.allShoppingListName.observe(viewLifecycleOwner,{
+        mainViewModel.allShopListNameItem.observe(viewLifecycleOwner,{
 adapter.submitList(it)
         })
     }
@@ -92,33 +94,21 @@ DeleteDialog.showDialog(context as AppCompatActivity,object :DeleteDialog.Listen
 
 
 
-    override fun onClickItem(shoppingListName: ShoppingListName) {
-        TODO("Not yet implemented")
+    override fun onClickItem(shopListNameItem: ShopListNameItem) {
+        val i = Intent(activity,ShopListActivity::class.java).apply {
+            putExtra(ShopListActivity.SHOP_LIST_NAME,shopListNameItem)
+        }
+        startActivity(i)
     }
 
-    override fun editItem(shoppingListName: ShoppingListName) {
-        shoppingListName.name?.let {
+    override fun editItem(shopListNameItem: ShopListNameItem) {
+        shopListNameItem.name?.let {
             NewListDialog.showDialog(activity as AppCompatActivity,object: NewListDialog.Listener{
                 override fun onClick(name: String) {
-                    mainViewModel.updateListName(shoppingListName.copy(name = name))
+                    mainViewModel.updateListName(shopListNameItem.copy(name = name))
                 }
             }, it)
         }
     }
-
-//    override fun editItem(shoppingListName: ShoppingListName) {
-//        NewListDialog.showDialog(activity as AppCompatActivity,object: NewListDialog.Listener{
-//            override fun onClick(name: String) {
-//
-//
-//                mainViewModel.updateListName(shoppingListName.copy(name = name))
-//            }
-//
-//        } )
-//    }
-
-
-
-
 
 }

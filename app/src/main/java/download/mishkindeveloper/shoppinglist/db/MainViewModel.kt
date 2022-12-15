@@ -2,14 +2,14 @@ package download.mishkindeveloper.shoppinglist.db
 
 import androidx.lifecycle.*
 import download.mishkindeveloper.shoppinglist.entity.NoteItem
-import download.mishkindeveloper.shoppinglist.entity.ShoppingListName
+import download.mishkindeveloper.shoppinglist.entity.ShopListNameItem
 import kotlinx.coroutines.launch
 
 class MainViewModel(dataBase: MainDataBase) :ViewModel() {
     val dao = dataBase.getDao()
 
     val allNotes:LiveData<List<NoteItem>> = dao.getAllNotes().asLiveData()
-    val allShoppingListName:LiveData<List<ShoppingListName>> = dao.getAllShoppingListNames().asLiveData()
+    val allShopListNameItem:LiveData<List<ShopListNameItem>> = dao.getAllShoppingListNames().asLiveData()
 
 //для заметок
     fun insertNote(note: NoteItem) = viewModelScope.launch {
@@ -22,14 +22,14 @@ class MainViewModel(dataBase: MainDataBase) :ViewModel() {
         dao.deleteNote(id)
     }
 //для шопинг листа
-    fun insertShopListName(listName: ShoppingListName) = viewModelScope.launch {
+    fun insertShopListName(listName: ShopListNameItem) = viewModelScope.launch {
     dao.insertShopListName(listName)
 }
     fun deleteShopListName(id: Int) = viewModelScope.launch {
-        dao.deleteShoplistName(id)
+        dao.deleteShopinglistName(id)
     }
 
-    fun updateListName(shopListName: ShoppingListName) = viewModelScope.launch {
+    fun updateListName(shopListName: ShopListNameItem) = viewModelScope.launch {
         dao.updateListName(shopListName)
     }
 

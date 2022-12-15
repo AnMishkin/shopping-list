@@ -5,7 +5,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import download.mishkindeveloper.shoppinglist.entity.NoteItem
-import download.mishkindeveloper.shoppinglist.entity.ShoppingListName
+import download.mishkindeveloper.shoppinglist.entity.ShopListNameItem
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -26,14 +26,14 @@ interface Dao {
 
     //Для шопинг листа
     @Insert
-    suspend fun insertShopListName(name:ShoppingListName)
+    suspend fun insertShopListName(name:ShopListNameItem)
 
     @Query("SELECT * FROM shopping_list_names")
-    fun getAllShoppingListNames():Flow<List<ShoppingListName>>
+    fun getAllShoppingListNames():Flow<List<ShopListNameItem>>
 
     @Query("DELETE FROM shopping_list_names WHERE id IS :id")
-    suspend fun deleteShoplistName(id:Int)
+    suspend fun deleteShopinglistName(id:Int)
 
     @Update
-    suspend fun updateListName(shoppingListName: ShoppingListName)
+    suspend fun updateListName(shopListNameItem: ShopListNameItem)
 }

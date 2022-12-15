@@ -6,11 +6,11 @@ import androidx.room.PrimaryKey
 import java.io.Serializable
 
 @Entity(tableName = "shopping_list_names")
-data class ShoppingListName (
+data class ShopListNameItem (
     @PrimaryKey(autoGenerate = true)
     val id:Int?,
 
-    //название продукта
+    //название списка покупок
     @ColumnInfo(name = "name")
     val name:String?,
 

@@ -30,6 +30,12 @@
     <string name="button_delete">Delete</string>
     <string name="button_cancel">Cancel</string>
 
+<!--    string для меню бара списка продуктов-->
+    <string name="delete_list">Delete list</string>
+    <string name="clear_list">Clear list</string>
+    <string name="share_list">Share list</string>
+    <string name="save_item">Save item</string>
+    <string name="text_for_new_product">Enter the product name</string>
 
 
 </resources>
