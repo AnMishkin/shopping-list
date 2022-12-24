@@ -28,7 +28,7 @@ class ShopListItemAdapter(private val listener:Listener): ListAdapter<ShoppingLi
             fun createShopItem(parent:ViewGroup):ItemHolder{
                 return  ItemHolder(
                     LayoutInflater.from(parent.context).
-                    inflate(R.layout.shop_list_name_item,parent,false))
+                    inflate(R.layout.shop_list_item,parent,false))
             }
             fun createLibraryItem(parent:ViewGroup):ItemHolder{
                 return  ItemHolder(
