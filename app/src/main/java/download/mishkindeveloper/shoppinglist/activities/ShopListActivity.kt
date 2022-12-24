@@ -35,12 +35,12 @@ class ShopListActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.shop_list_menu,menu)
         saveItem = menu?.findItem(R.id.save_item)!!
         val newItem = menu.findItem(R.id.new_item)
-        newItem.setOnActionExpandListener(expanActionViev())
+        newItem.setOnActionExpandListener(expandActionViev())
         saveItem.isVisible=false
         return true
     }
 
-    private fun expanActionViev():MenuItem.OnActionExpandListener{
+    private fun expandActionViev():MenuItem.OnActionExpandListener{
         return object : MenuItem.OnActionExpandListener{
             override fun onMenuItemActionExpand(item: MenuItem): Boolean {
                 saveItem.isVisible=true
