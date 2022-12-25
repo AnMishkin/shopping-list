@@ -13,7 +13,7 @@ val id:Int?,
 val name:String,
 
 @ColumnInfo (name = "itemInfo")
-val itemInfo:String,
+val itemInfo:String?,
 
 @ColumnInfo (name = "ItemChecked")
 val itemChecked:Int = 0,

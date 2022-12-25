@@ -6,6 +6,7 @@ import androidx.room.Query
 import androidx.room.Update
 import download.mishkindeveloper.shoppinglist.entity.NoteItem
 import download.mishkindeveloper.shoppinglist.entity.ShopListNameItem
+import download.mishkindeveloper.shoppinglist.entity.ShoppingListItem
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -36,4 +37,11 @@ interface Dao {
 
     @Update
     suspend fun updateListName(shopListNameItem: ShopListNameItem)
+
+    //для шопинг листа а именно для сохраненных подсказок
+    @Insert
+    suspend fun insertItem(shoppingListItem: ShoppingListItem)
+
+    @Query("SELECT * FROM shop_list_item WHERE listId LIKE :listId")
+    fun getAllShopListItems(listId:Int):Flow<List<ShoppingListItem>>
 }

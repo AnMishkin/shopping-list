@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import download.mishkindeveloper.shoppinglist.R
+import download.mishkindeveloper.shoppinglist.databinding.ShopListItemBinding
 import download.mishkindeveloper.shoppinglist.databinding.ShopListNameItemBinding
 import download.mishkindeveloper.shoppinglist.entity.ShopListNameItem
 
@@ -14,13 +15,17 @@ import download.mishkindeveloper.shoppinglist.entity.ShoppingListItem
 
 class ShopListItemAdapter(private val listener:Listener): ListAdapter<ShoppingListItem, ShopListItemAdapter.ItemHolder>(ItemComparator()) {
 
-    class ItemHolder(view:View) : RecyclerView.ViewHolder(view){
-        private val binding = ShopListNameItemBinding.bind(view)
+    class ItemHolder(val view:View) : RecyclerView.ViewHolder(view){
 
-        fun setItemData(shopListItem: ShoppingListItem, listener: Listener) = with((binding)){
 
+        fun setItemData(shopListItem: ShoppingListItem, listener: Listener){
+            val binding = ShopListItemBinding.bind(view)
+            binding.apply {
+                tvName.text = shopListItem.name
             }
-            fun setLibraryData(shopListItem: ShoppingListItem, listener: Listener) = with((binding)){
+            }
+
+            fun setLibraryData(shopListItem: ShoppingListItem, listener: Listener){
 
             }
 

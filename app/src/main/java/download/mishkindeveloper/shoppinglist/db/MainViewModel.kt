@@ -3,6 +3,7 @@ package download.mishkindeveloper.shoppinglist.db
 import androidx.lifecycle.*
 import download.mishkindeveloper.shoppinglist.entity.NoteItem
 import download.mishkindeveloper.shoppinglist.entity.ShopListNameItem
+import download.mishkindeveloper.shoppinglist.entity.ShoppingListItem
 import kotlinx.coroutines.launch
 
 class MainViewModel(dataBase: MainDataBase) :ViewModel() {
@@ -32,7 +33,14 @@ class MainViewModel(dataBase: MainDataBase) :ViewModel() {
     fun updateListName(shopListName: ShopListNameItem) = viewModelScope.launch {
         dao.updateListName(shopListName)
     }
+//для всплывающих подсказок,сохраненных и покупок
+fun insertShopItem(shoppingListItem: ShoppingListItem) = viewModelScope.launch {
+    dao.insertItem(shoppingListItem)
+}
 
+    fun getAllItemsFromList(listId:Int): LiveData<List<ShoppingListItem>>{
+        return dao.getAllShopListItems(listId).asLiveData()
+    }
 
 class MainViewModelFactory(val dataBase: MainDataBase) : ViewModelProvider.Factory{
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
