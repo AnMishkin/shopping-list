@@ -38,4 +38,10 @@
     <string name="text_for_new_product">Enter the product name</string>
 
 
+
+    <string name="empty_shopping_list">Your shopping list is currently empty</string>
+
+
+
+
 </resources>
